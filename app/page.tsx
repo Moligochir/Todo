@@ -1,0 +1,80 @@
+"use client";
+import { useState } from "react";
+import "./index.css";
+
+export default function Home() {
+  const [state, setState] = useState<String>();
+  const handleChangeAllButton = () => {
+    setState("All");
+  };
+
+  const handleChangeAllButton1 = () => {
+    setState("Active");
+  };
+
+  const handleChangeAllButton2 = () => {
+    setState("Completed");
+  };
+  const [inputValue, setInputValue] = useState("");
+  const [todos, setTodos] = useState([]);
+
+  const handleInputValue = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleAddButton = () => {
+    setTodos([...todos, inputValue]);
+  };
+  console.log("this is state value", state);
+  console.log("this is input value", inputValue);
+  console.log("this is todos now", todos);
+
+  return (
+    <div className="container">
+      <h1 className="header">To-Do List</h1>
+      <div className="container1">
+        <input
+          placeholder="Add a new task..."
+          onChange={handleInputValue}
+        ></input>
+        <button className="button1" onClick={handleAddButton}>
+          Add
+        </button>
+      </div>
+      <div className="container2">
+        <button
+          onClick={handleChangeAllButton}
+          style={{
+            backgroundColor: state === "All" ? "#3c82f6" : "#f9f9f9",
+            color: state === "All" ? "#f9f9f9" : "#363636",
+          }}
+        >
+          All
+        </button>
+        <button
+          onClick={handleChangeAllButton1}
+          style={{
+            backgroundColor: state === "Active" ? "#3c82f6" : "#f9f9f9",
+            color: state === "Active" ? "#f9f9f9" : "#363636",
+          }}
+        >
+          Active
+        </button>
+        <button
+          onClick={handleChangeAllButton2}
+          style={{
+            backgroundColor: state === "Completed" ? "#3c82f6" : "#f9f9f9",
+            color: state === "Completed" ? "#f9f9f9" : "#363636",
+          }}
+        >
+          Completed
+        </button>
+      </div>
+      <h2 className="header1">No tasks yet. Add one above!</h2>
+      <div>
+        <h3 className="header2">Powered by</h3>
+        <button className="button2">Pinecone academy</button>
+      </div>
+    </div>
+  );
+}
